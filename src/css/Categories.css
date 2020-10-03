@@ -1,0 +1,35 @@
+.Categories__menu {
+    margin: 20px 25px;
+    display: flex;
+}
+
+.Categories_link {
+    list-style-type: none;
+    background-color: #ffffff;
+    border-color: black;
+    padding: 7px 25px;
+    border: 3px solid black;
+    border-radius: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform .1s linear; /* длительность операции transform */
+}
+
+.Categories_link.active {
+    background-color: #ffbb8c;
+}
+
+.Categories_link:hover {
+    transform: translate3d(10px,10px,0); /* смешение картинки при наводе */
+    background-color:#ffbb8c ;
+    opacity: .3; /* затемнение */
+}
+
+
+ul,li {
+    padding: 0;
+    margin: 0;
+}

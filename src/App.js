@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Header from "./Components/Header";
+import About from "./Pages/About";
+import Basket from "./Pages/Basket";
+import Home from "./Pages/Home";
 
-function App() {
+
+
+export default function App() {
+
+  const [PizzaInfo,SetPizzaInfo] = React.useState([])
+
+  React.useEffect ( () => {
+      fetch('http://127.0.0.1:3000/db.json')
+      .then((resp) => resp.json())
+      .then((json) => {
+          SetPizzaInfo(json.pizzas)
+      })
+  }, [])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <div>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/basket">
+            <Basket />
+          </Route>
+          <Route path="/">
+            <Home items={PizzaInfo}/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;
